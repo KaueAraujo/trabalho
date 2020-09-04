@@ -37,12 +37,8 @@ public class SolicitanteController {
     @PostMapping("/solicita/cadastra")
     public ResponseEntity<Solicitante> novaSolicitante(@RequestBody final Solicitante solicita) {
         try {
-            if (solicita.getIdSol() > 0) {
-                final Solicitante novo = dao.save(solicita); // Salva o usuario no banco de dados
-                return ResponseEntity.ok(novo); // retorna os dados do usuario
-            } else {
-                return ResponseEntity.status(404).build();
-            }
+            final Solicitante novo = dao.save(solicita); // Salva o usuario no banco de dados
+            return ResponseEntity.ok(novo); // retorna os dados do usuario
         } catch (final Exception ex) {
             return ResponseEntity.status(400).build();
         }

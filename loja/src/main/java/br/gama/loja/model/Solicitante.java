@@ -2,15 +2,13 @@ package br.gama.loja.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -46,15 +44,15 @@ public class Solicitante {
     private LocalDate data;
 
     @Column(name="hora",nullable = false)
-    @JsonFormat(pattern ="HH:mm")
+    @JsonFormat(pattern ="HH:mm:ss")
     private LocalTime hora;
 
     @Column(name="status", length = 20 ,nullable = false)
     private String status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitante")
+    @ManyToOne
     @JsonIgnoreProperties("solicitante")
-    private List<PDV> pdv;
+    private PDV pdv;
 
     public int getIdSol() {
         return idSol;
